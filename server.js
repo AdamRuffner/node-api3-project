@@ -1,6 +1,8 @@
 const express = require('express');
-const morgan = require('morgan')
-const userRouter = require('./users/userRouter')
+const morgan = require('morgan');
+const userRouter = require('./users/userRouter');
+const postsRouter = require('./posts/postRouter');
+
 
 const server = express();
 
@@ -13,6 +15,7 @@ server.get('/', (req, res) => {
 //custom middleware
 server.use(morgan('dev'))
 server.use('/api/users', userRouter)
+server.use('/api/posts', postsRouter)
 server.get('*', (req,res) => {
   res.status(404).json({ meesage: "not found" })
 })
